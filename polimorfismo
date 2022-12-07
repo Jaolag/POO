@@ -1,0 +1,52 @@
+class Pessoa:
+    def __init__(self, nome, dt_nasc, cpf) -> None:
+        self._nome= nome
+        self._dt_nasc= dt_nasc
+        self._cpf= cpf
+
+    def __str__(self) -> str:
+        return f'Nome: {self._nome} '+'\n' + f'Data Nasc.: {self._dt_nasc}'+'\n' +f'Cpf: {self._cpf}'
+
+class Funcionario(Pessoa):
+    def __init__(self, nome, dt_nasc, cpf, funçao, salario):
+        super().__init__(nome,dt_nasc, cpf)
+        self._funçao =funçao
+        self._salario= salario
+
+    def __str__(self):
+        #reuso
+        saida=  super().__str__()
+        saida+= '\n'f' Funçao: {self._funçao}'+'\n' +f'Salario: {self._salario}'
+        return saida
+
+
+class Aluno(Pessoa):
+    def __init__(self, nome, dt_nasc, cpf, matrícula, curso):
+        super().__init__(nome, dt_nasc, cpf)
+        self._matricula= matrícula
+        self._curso= curso
+    def __str__(self):
+        saida=  super().__str__()
+        saida+= '\n'f'Matricula: {self._matricula}'+'\n' +f'Curso: {self._curso}'
+        return saida
+
+
+class Principal:
+    def __init__(self):
+        self._pessoas = []
+
+    #metodo cadastrar
+    def cadastrar(self, pessoa):
+        if isinstance(pessoa,Pessoa):
+            self._pessoas.append(pessoa)
+    
+
+    def relatorio(self):
+        for i in self._pessoas:
+            print(i)
+
+
+joao=Aluno('joao', '16/04/2004', '9384023489', 'mtds0320', 'T.ADS')
+print(joao)
+p2=Funcionario('pessoa2', '14/04/2404', '98789787','Senior', '10milDORALES')
+print(p2)
